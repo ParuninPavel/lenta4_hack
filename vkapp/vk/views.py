@@ -15,3 +15,7 @@ def init(request, **request_params):
     param = list(request.GET.items()) #.get('viewer_id')
     context = {'data': param}
     return render(request, 'vk/index.html', context)
+
+@xframe_options_exempt
+def blogers(request):
+    return render(request, 'vk/blogers.html')

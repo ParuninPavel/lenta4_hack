@@ -12,6 +12,11 @@ urlpatterns = [
     url(
         regex=r'^auth/',
         view=views.init,
-        # name='init'
+        name='auth'
     ),
+    url(
+        regex=r'^blogers/',
+        view=views.blogers,
+        name='blogers'
+    )
 ]
