@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load static i18n %}<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,26 +11,36 @@
     <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
     <title>VKAPP</title>
 </head>
 
 <body>
 
-
-
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Special title treatment</h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <p>{{data}}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="row row-content">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Новости от блогеров</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Общие новости</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Статистика</button>
             </div>
         </div>
-    </div>
+            <!-- <div class="col">
+                Новости от блогеров
+            </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    Общие новости
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    Статистика
+                </div>
+            </div> -->
+                
+        </div>
 
     <script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
