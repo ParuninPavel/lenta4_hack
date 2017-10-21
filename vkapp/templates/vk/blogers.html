@@ -2,7 +2,7 @@
 {% load staticfiles%}
 
 {% block css %}
-<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/git/jquery.mobile-git.css">
 <link href="{% static 'css/tinder.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -29,9 +29,9 @@
 
 {% block javascript %}
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).on('pageinit', function(event){
 
     $(".buddy").on("swiperight",function(){
       $(this).addClass('rotate-left').delay(700).fadeOut(1);
