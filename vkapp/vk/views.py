@@ -8,7 +8,9 @@ from django.shortcuts import render
 # &viewer_id=123456
 # &group_id=654321
 # &is_app_user=0 \\
+from django.views.decorators.clickjacking import xframe_options_exempt
 
+@xframe_options_exempt
 def init(request, **request_params):
     param = list(request.GET.items()) #.get('viewer_id')
     context = {'data': param}
