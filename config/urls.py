@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^users/', include('vkapp.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^botupdates/', include('vkapp.bot.urls')),
+    url(r'^vk/', include('vkapp.vk.urls'))
 
     # Your stuff: custom urls includes go here
 

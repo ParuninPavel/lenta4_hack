@@ -1,14 +1,18 @@
 """
-Production settings for lentach project.
+Production settings for test project.
 
-
-- Use Amazon's S3 for storing static files and uploaded media
+- Use WhiteNoise for serving static files
+- Use Amazon's S3 for storing uploaded media
 - Use mailgun to send emails
 - Use Redis for cache
+
+- Use sentry for error logging
 
 
 """
 
+
+import logging
 
 
 from .base import *  # noqa
@@ -23,6 +27,14 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# raven sentry client
+# See https://docs.sentry.io/clients/python/integrations/django/
+
+# Use Whitenoise to serve static files
+# See: https://whitenoise.readthedocs.io/
+WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
+MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
+
 
 # SECURITY CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -49,6 +61,7 @@ X_FRAME_OPTIONS = 'DENY'
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['lentach.cleverbots.ru', ])
 # END SITE CONFIGURATION
+ALLOWED_HOSTS += ['localhost']
 
 INSTALLED_APPS += ['gunicorn', ]
 
@@ -79,25 +92,14 @@ AWS_HEADERS = {
 
 # URL that handles the media served from MEDIA_ROOT, used for managing
 # stored files.
+MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-#  See:http://stackoverflow.com/questions/10390244/
-from storages.backends.s3boto3 import S3Boto3Storage
-StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')  # noqa
-MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media')  # noqa
-DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
-
-MEDIA_URL = 'https://s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 
 # Static Assets
 # ------------------------
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_URL = 'https://s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
-STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
-# See: https://github.com/antonagestam/collectfast
-# For Django 1.7+, 'collectfast' should come before
-# 'django.contrib.staticfiles'
-AWS_PRELOAD_METADATA = True
-INSTALLED_APPS = ['collectfast', ] + INSTALLED_APPS
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -148,14 +150,6 @@ CACHES = {
 }
 
 
-# LOGGING CONFIGURATION
-# ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See https://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

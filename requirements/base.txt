@@ -13,6 +13,9 @@ django-environ==0.4.4
 
 vk
 
+whitenoise==3.3.1
+
+
 # Forms
 django-crispy-forms==1.7.0
 

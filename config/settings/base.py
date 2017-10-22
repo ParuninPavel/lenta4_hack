@@ -56,6 +56,7 @@ LOCAL_APPS = [
     # custom users app
     'vkapp.users.apps.UsersConfig',
     'vkapp.bot.apps.BotConfig',
+    'vkapp.vk.apps.VkConfig',
     # Your stuff: custom apps go here
 ]
 

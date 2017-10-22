@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="container">
+    <div class="row row-content">
+        <div class="col-12">
+            <a class="btn btn-primary btn-lg btn-block" href="{% url 'blogers' %}" role="button">
+                Новости от блогеров
+                <span class="badge badge-light">4</span>
+            </a>
+            <a class="btn btn-secondary btn-lg btn-block" href="#" role="button">
+                Общие новости
+                <span class="badge badge-light">1</span>
+            </a>
+            <a class="btn btn-secondary btn-lg btn-block" href="#" role="button">
+                Статистика
+            </a>                
+        </div>
+    </div>                
+</div>
+{% endblock %}
