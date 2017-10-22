@@ -3,9 +3,9 @@ from .usersDAO import get_or_create_blogger
 from datetime import datetime, timedelta, time
 
 
-def new_news(link, media, uid):
+def new_news(link, media, uid, pic):
     blogger = get_or_create_blogger(uid)
-    news = News(link=link, blogger=blogger, media=media)
+    news = News(link=link, blogger=blogger, media=media, pic=pic)
     news.save()
     return news
 
