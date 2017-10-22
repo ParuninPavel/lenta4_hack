@@ -51,6 +51,10 @@
             $(this).swipe_this();
         });
 
+        $(".buddy").on("click", function () {
+            alert('click');
+        });
+
         $(".buddy").on("swipeleft", function () {
             $(this).addClass('rotate-right').delay(700).fadeOut(1);
             $('.buddy').find('.status').remove();
