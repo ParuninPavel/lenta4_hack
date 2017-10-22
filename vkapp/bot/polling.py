@@ -19,6 +19,7 @@ def polling():
     #server, key, ts = get_polling_server()
 
     while True:
+        time.sleep(0.01)
         r = requests.get('https://{}?act=a_check&key={}&ts={}&wait=25&mode=2&version=2'.format(Poller.server, Poller.key, Poller.ts))
         resp = json.loads(r.text)
 
