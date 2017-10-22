@@ -5,6 +5,7 @@ from .users import Blogger, Admin
 class News(models.Model):
     id = models.AutoField(primary_key=True)
     link = models.CharField(max_length=300, blank=True, null=True)
+    pic = models.CharField(max_length=300, blank=True, null=True)
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE, null=True)
     media = models.CharField(max_length=3000, blank=True, null=True)
     date_time = models.DateTimeField(auto_now_add=True)

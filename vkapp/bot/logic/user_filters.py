@@ -8,7 +8,7 @@ class StatsFilter(Filter):
         sticker_result = stickers.is_sticker(trigger.get_update())
 
         if sticker_result[0]:
-            if sticker_result[1] == '4193':
+            if sticker_result[1] == '4659':
                 return StatisticsState()
 
 
@@ -17,7 +17,7 @@ class ProposeNewsFilter(Filter):
         sticker_result = stickers.is_sticker(trigger.get_update())
 
         if sticker_result[0]:
-            if sticker_result[1] == '2920':
+            if sticker_result[1] == '4639':
                 return ProposeNewsState()
 
 
