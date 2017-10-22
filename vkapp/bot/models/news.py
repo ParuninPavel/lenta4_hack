@@ -13,7 +13,7 @@ class News(models.Model):
 class AdminReview(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
+    news = models.ForeignKey(News, on_delete=models.CASCADE, unique=True)
     rating = models.IntegerField()
     date_time = models.DateTimeField(auto_now_add=True)
 
@@ -21,7 +21,7 @@ class AdminReview(models.Model):
 class Publication(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
+    news = models.ForeignKey(News, on_delete=models.CASCADE, unique=True)
     date_time = models.DateTimeField(auto_now_add=True)
 
 

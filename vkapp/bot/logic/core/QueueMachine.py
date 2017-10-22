@@ -10,8 +10,8 @@ from vkapp.bot.logic.user_states import BootStrapState, RootState
 class UserStruct:
     def __init__(self):
         self.message_queue=[]
-        # self.state=BootStrapState()
-        self.state = RootState()
+        self.state=BootStrapState()
+        # self.state = RootState()
 
     def push(self, update):
         self.message_queue.append(update)
