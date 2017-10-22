@@ -18,5 +18,20 @@ urlpatterns = [
         regex=r'^blogers/',
         view=views.blogers,
         name='blogers'
-    )
+    ),
+    url(
+        regex=r'^news/',
+        view=views.blogers,
+        name='news'
+    ),
+    url(
+        regex=r'^news1/',
+        view=views.blogers,
+        name='news1'
+    ),
+    url(
+        regex=r'^news2/',
+        view=views.blogers,
+        name='news2'
+    ),
 ]
