@@ -11,7 +11,7 @@ class UserStruct:
     def __init__(self):
         self.message_queue=[]
         self.state=BootStrapState()
-        # self.state = RootState()
+        #self.state = RootState()
 
     def push(self, update):
         self.message_queue.append(update)
