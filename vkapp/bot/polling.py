@@ -11,15 +11,19 @@ def get_polling_server():
     r = vkapi('messages.getLongPollServer', need_pts=1)
     return r['server'], r['key'], r['ts']
 
-def polling():
+class Poller:
     server, key, ts = get_polling_server()
 
+
+def polling():
+    #server, key, ts = get_polling_server()
+
     while True:
-        r = requests.get('https://{}?act=a_check&key={}&ts={}&wait=25&mode=2&version=2'.format(server, key, ts))
+        r = requests.get('https://{}?act=a_check&key={}&ts={}&wait=25&mode=2&version=2'.format(Poller.server, Poller.key, Poller.ts))
         resp = json.loads(r.text)
 
         if 'failed' in resp:
-            server, key, ts = get_polling_server()
+            Poller.server, Poller.key, Poller.ts = get_polling_server()
             continue
 
         if 'updates' in resp:
@@ -37,7 +41,7 @@ def polling():
                             # response = requests.post(url, data=json.dumps(serialized_update), headers=headers)
                             # print ('SENT: ', response)
 
-        ts = resp['ts']+1
+        Poller.ts = resp['ts']+1
         print (resp)
         #time.sleep(1)
 
