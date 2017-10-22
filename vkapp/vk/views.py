@@ -9,6 +9,7 @@ from django.shortcuts import render
 # &group_id=654321
 # &is_app_user=0 \\
 from django.views.decorators.clickjacking import xframe_options_exempt
+from vkapp.bot.dao.newsDAO import get_news_proposed_today
 
 @xframe_options_exempt
 def init(request, **request_params):
@@ -18,4 +19,5 @@ def init(request, **request_params):
 
 @xframe_options_exempt
 def blogers(request):
+    
     return render(request, 'vk/blogers.html')
