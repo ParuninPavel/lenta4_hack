@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+from vkapp.bot.logic.user_filters import StatsFilter, ProposeNewsFilter, AdminChatFilter
 
 class StateMachine(object):
     def __init__(self):
         self.state = None
         self.user_struct = None
-        self.filters = []
+        self.filters = [StatsFilter(), ProposeNewsFilter(), AdminChatFilter()]
 
     def fire(self, trigger, uid, update):
         # trigger.user = self.user
